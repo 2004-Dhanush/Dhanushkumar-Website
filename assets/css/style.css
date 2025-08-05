@@ -1371,7 +1371,7 @@ textarea.form-input::-webkit-resizer { display: none; }
    
   }
 
-  .sidebar.active { max-height: 584px; }
+  .sidebar.active { max-height: 884px; }
 
   .sidebar-info { gap: 25px; }
 
