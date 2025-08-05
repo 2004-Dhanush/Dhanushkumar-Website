@@ -321,7 +321,7 @@ main {
   transition: var(--transition-2);
 }
 
-.sidebar.active { max-height: 405px; }
+.sidebar.active { max-height: 505px; }
 
 .sidebar-info {
   position: relative;
@@ -1328,8 +1328,7 @@ textarea.form-input::-webkit-resizer { display: none; }
     width: 520px;
     margin-inline: auto;
     padding: 30px;
-        height: auto;
-    min-height: 100vh;
+ 
   }
 
   .article-title {
@@ -1369,8 +1368,7 @@ textarea.form-input::-webkit-resizer { display: none; }
   .sidebar {
     max-height: 180px;
     margin-bottom: 30px;
-        height: auto;
-    min-height: 100vh;
+   
   }
 
   .sidebar.active { max-height: 584px; }
