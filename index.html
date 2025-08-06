@@ -126,10 +126,7 @@
         <button onclick="window.location.href='./assets/pdf/resumee.pdf'" class="fform-btn" type="submit">
           Download Resume
         </button>
-        <div class></div>
-        
 
-        <div class="separator"></div>
         <ul class="social-list">
 
           <li class="social-item">
@@ -1206,11 +1203,12 @@
               <input type="email" name="email" class="form-input" placeholder="Email address" required data-form-input>
             </div>
             <textarea name="message" class="form-input" placeholder="Your Message" required data-form-input></textarea>
-            <button class="form-btn" type="submit" disabled data-form-btn>
+            <button class="form-btn" type="submit" data-form-btn>
               <ion-icon name="paper-plane"></ion-icon>
               <span>Send Message</span>
             </button>
           </form>
+
 
         </section>
 
@@ -1236,39 +1234,45 @@
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
   <!-- ✅ EmailJS SDK Script -->
-  <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <!-- ✅ Use the proper script for EmailJS v4 (UMD build for browsers) -->
+ <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script>
+  // Initialize EmailJS with your public key
+  (function () {
+    emailjs.init("6CU0oBrwwF0GUw2pJ"); // Replace with your EmailJS public key
+  })();
 
-  <!-- ✅ Setup script -->
-  <script type="text/javascript">
-    (function () {
-      emailjs.init("6CU0oBrwwF0GUw2pJ"); // Your Public Key
-    })();
+  // Handle form submission
+  document.getElementById('contact-form').addEventListener('submit', function (e) {
+    e.preventDefault(); // Prevent default form submission
 
-    window.addEventListener("DOMContentLoaded", () => {
-      const form = document.getElementById("contact-form");
+    const form = this;
 
-      // Add hidden time field
-      const timeField = document.createElement("input");
-      timeField.setAttribute("type", "hidden");
-      timeField.setAttribute("name", "time");
-      timeField.value = new Date().toLocaleString();
-      form.appendChild(timeField);
+    // Create a hidden input field for current timestamp
+    const timeInput = document.createElement("input");
+    timeInput.type = "hidden";
+    timeInput.name = "time";
+    timeInput.value = new Date().toLocaleString(); // e.g., "8/6/2025, 10:15:30 AM"
+    form.appendChild(timeInput);
 
-      form.addEventListener("submit", function (e) {
-        e.preventDefault();
-
-        emailjs.sendForm("service_abc123", "template_z2b005n", form)
-          .then(() => {
-            alert("✅ Message sent successfully!");
-            form.reset();
-          })
-          .catch((error) => {
-            alert("❌ Failed to send message.");
-            console.error(error);
-          });
+    // Send form using EmailJS
+    emailjs.sendForm('service_tew3tce', 'template_6x49wsv', form)
+      .then(function (response) {
+        alert("✅ Message sent successfully!");
+        form.reset();
+        form.removeChild(timeInput); // Clean up hidden field
+      }, function (error) {
+        alert("❌ Failed to send message. Please try again.");
+        console.error("EmailJS error:", error);
+        form.removeChild(timeInput);
       });
-    });
-  </script>
+  });
+</script>
+
+
+</body>
+
+</html>
 
 
 
